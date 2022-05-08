@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ndnu.springboot.mapper.MaterialMapper">
+
+    <resultMap id="pageMaterial" type="com.ndnu.springboot.entity.Material">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="quantity" property="quantity"/>
+        <result column="specification" property="specification"/>
+        <result column="inbound_date" property="inboundDate"/>
+        <result column="source" property="source"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <select id="findMaterial" resultMap="pageMaterial">
+        select * FROM material
+        <if test="name != null and name != ''">
+            where name like concat('%', #{name} ,'%')
+        </if>
+    </select>
+</mapper>

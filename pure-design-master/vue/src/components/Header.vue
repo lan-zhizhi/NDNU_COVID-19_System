@@ -34,7 +34,7 @@ export default {
   name: "Header",
   props: {
     collapseBtnClass: String,
-    user: Object
+    user: Object,
   },
   computed: {
     currentPathName () {
@@ -54,6 +54,9 @@ export default {
     logout() {
       this.$store.commit("logout")
       this.$message.success("退出成功")
+    },
+    load(){
+
     }
   }
 }

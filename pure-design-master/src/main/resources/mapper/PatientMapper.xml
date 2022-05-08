@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qingge.springboot.mapper.PatientMapper">
+<mapper namespace="com.ndnu.springboot.mapper.PatientMapper">
+    <resultMap id="pagePatient" type="com.ndnu.springboot.entity.Patient">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="phone" property="phone"/>
+        <result column="identification_number" property="identificationNumber" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="address" property="address" />
+        <result column="hospitalization_date" property="hospitalizationDate" />
+        <result column="infection_source" property="infectionSource" />
+        <result column="death_date" property="deathDate"/>
+        <result column="discharge_date" property="dischargeDate"/>
+        <result column="category" property="category"/>
+    </resultMap>
 
+    <select id="findPatient" resultMap="pagePatient">
+        select * FROM patient where category='diagnose'
+        <if test="name != null and name != ''">
+            and name like concat('%', #{name} ,'%')
+        </if>
+    </select>
+
+    <select id="findSuspectedPatient" resultMap="pagePatient">
+        select * FROM patient where category='suspected'
+        <if test="name != null and name != ''">
+            and name like concat('%', #{name} ,'%')
+        </if>
+    </select>
+
+    <select id="findIsolatePatient" resultMap="pagePatient">
+        select * FROM patient where category='isolate'
+        <if test="name != null and name != ''">
+            and name like concat('%', #{name} ,'%')
+        </if>
+    </select>
+
+    <select id="findDeathPatient" resultMap="pagePatient">
+        select * FROM patient where category='death'
+        <if test="name != null and name != ''">
+            and name like concat('%', #{name} ,'%')
+        </if>
+    </select>
+
+    <select id="findCurePatient" resultMap="pagePatient">
+        select * FROM patient where category='cure'
+        <if test="name != null and name != ''">
+            and name like concat('%', #{name} ,'%')
+        </if>
+    </select>
 </mapper>

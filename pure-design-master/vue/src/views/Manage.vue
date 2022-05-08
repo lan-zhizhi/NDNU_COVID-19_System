@@ -63,6 +63,8 @@ export default {
         this.request.get("/user/username/" + username).then(res => {
           // 重新赋值后台的最新User数据
           this.user = res.data
+          console.log(res.data)
+          console.log("你好年后")
         })
       }
     }
