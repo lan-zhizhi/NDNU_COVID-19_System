@@ -1,12 +1,15 @@
 <template>
-  <div style="line-height: 60px; display: flex">
+  <div style="line-height: 60px; display: flex;">
     <div style="flex: 1;">
       <span :class="collapseBtnClass" style="cursor: pointer; font-size: 18px" @click="collapse"></span>
-
       <el-breadcrumb separator="/" style="display: inline-block; margin-left: 10px">
         <el-breadcrumb-item :to="'/'">首页</el-breadcrumb-item>
         <el-breadcrumb-item>{{ currentPathName }}</el-breadcrumb-item>
       </el-breadcrumb>
+    </div>
+    <div>
+      <el-button type="primary"><a href="https://news.qq.com/zt2020/page/feiyan.htm#/" target="_blank" style="color: white; font-size: 15px;">国内疫情数据可视化分析</a></el-button>
+      <el-button type="primary"><a href="https://ncov.dxy.cn/ncovh5/view/pneumonia_timeline?from=dxy&link=&share=&source=" target="_blank" style="color: white; font-size: 15px;">国内疫情最新咨询</a></el-button>
     </div>
     <el-dropdown style="width: 150px; cursor: pointer; text-align: right">
       <div style="display: inline-block">
@@ -34,17 +37,15 @@ export default {
   name: "Header",
   props: {
     collapseBtnClass: String,
-    user: Object,
+    user: Object
   },
   computed: {
-    currentPathName () {
+    currentPathName() {
       return this.$store.state.currentPathName;　　//需要监听的数据
     }
   },
   data() {
-    return {
-
-    }
+    return {}
   },
   methods: {
     collapse() {
@@ -54,9 +55,6 @@ export default {
     logout() {
       this.$store.commit("logout")
       this.$message.success("退出成功")
-    },
-    load(){
-
     }
   }
 }

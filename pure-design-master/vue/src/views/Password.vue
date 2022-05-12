@@ -11,8 +11,11 @@
       <el-form-item label="确认新密码" prop="confirmPassword">
         <el-input v-model="form.confirmPassword" autocomplete="off" show-password></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item style="margin-top: 30px">
         <el-button type="primary" @click="save">确 定</el-button>
+        <router-link to="/Home">
+          <el-button style="margin-left:100px">取 消</el-button>
+        </router-link>
       </el-form-item>
     </el-form>
   </el-card>
@@ -42,7 +45,7 @@ export default {
     }
   },
   created() {
-    this.form.username = this.user.username
+    this.form.account = this.user.account
   },
   methods: {
     save() {

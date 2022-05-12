@@ -12,14 +12,6 @@
         <result column="create_time" property="createTime" />
         <result column="avatar_url" property="avatarUrl" />
         <result column="role" property="role" />
-        <collection property="courses" javaType="java.util.ArrayList" ofType="com.ndnu.springboot.entity.Course">
-            <result column="teacherCourseName" property="name" />
-            <result column="teacherScore" property="score" />
-        </collection>
-        <collection property="stuCourses" javaType="java.util.ArrayList" ofType="com.ndnu.springboot.entity.Course">
-            <result column="stuCourseName" property="name" />
-            <result column="stuScore" property="score" />
-        </collection>
     </resultMap>
 
     <select id="findPage" resultMap="pageUser">

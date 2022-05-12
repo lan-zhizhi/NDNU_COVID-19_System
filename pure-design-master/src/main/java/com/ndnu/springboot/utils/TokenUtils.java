@@ -14,6 +14,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
+/**
+ * @author LAN
+ */
 @Component
 public class TokenUtils {
 

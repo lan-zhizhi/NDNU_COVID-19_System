@@ -13,7 +13,6 @@ import org.apache.ibatis.annotations.Update;
  * </p>
  *
  * @author LAN
- * @since 2022-04-01
  */
 public interface UserMapper extends BaseMapper<User> {
 

@@ -30,7 +30,6 @@ import java.util.List;
  * </p>
  *
  * @author LAN
- * @since 2022-04-10
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
@@ -76,25 +75,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
     }
 
-
-    /**
-     * 注册新用户方法
-     */
-    @Override
-    public User register(UserDTO userDTO) {
-        User one = getUserInfo(userDTO);
-        if (one == null) {
-            one = new User();
-            BeanUtil.copyProperties(userDTO, one, true);
-            // 默认一个普通用户的角色
-            one.setRole(RoleEnum.User.toString());
-            // 把 copy完之后的用户对象存储到数据库
-            save(one);
-        } else {
-            throw new ServiceException(Constants.CODE_600, "用户已存在");
-        }
-        return one;
-    }
 
     @Override
     public void updatePassword(UserPasswordDTO userPasswordDTO) {

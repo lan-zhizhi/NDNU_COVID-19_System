@@ -12,18 +12,16 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author LAN
- * @since 2022-03-31
  */
 public interface IUserService extends IService<User> {
 
     /**
-     *
+     * 登录
      * @param userDTO 接受前端登录请求的参数的对象
      * @return UserDTo
      */
     UserDTO login(UserDTO userDTO);
 
-    User register(UserDTO userDTO);
 
     void updatePassword(UserPasswordDTO userPasswordDTO);
 

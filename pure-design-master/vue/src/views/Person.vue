@@ -1,34 +1,27 @@
 <template>
   <el-card style="width: 500px;">
     <el-form label-width="80px" size="small">
-      <el-upload
-          class="avatar-uploader"
-          :action="'http://' + serverIp +':9090/file/upload'"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-      >
-        <img v-if="form.avatarUrl" :src="form.avatarUrl" class="avatar">
-        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-      </el-upload>
 
       <el-form-item label="用户名">
-        <el-input v-model="form.username" disabled autocomplete="off"></el-input>
+        <el-input v-model="form.account" disabled autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="昵称">
-        <el-input v-model="form.nickname" autocomplete="off"></el-input>
+      <el-form-item label="姓名">
+        <el-input v-model="form.username" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="邮箱">
-        <el-input v-model="form.email" autocomplete="off"></el-input>
+      <el-form-item label="部门">
+        <el-input v-model="form.department" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="电话">
         <el-input v-model="form.phone" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="地址">
-        <el-input type="textarea" v-model="form.address" autocomplete="off"></el-input>
+      <el-form-item style="margin-top:40px">
+        <el-button style="margin-left:40px" type="primary" size="medium" @click="save">确 定</el-button>
+        <router-link to='/Home'>
+          <el-button style="margin-left:100px" size="medium" >取 消</el-button>
+        </router-link>
+
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="save">确 定</el-button>
-      </el-form-item>
+
     </el-form>
   </el-card>
 </template>
@@ -56,7 +49,7 @@ export default {
       return (await this.request.get("/user/username/" + this.user.username)).data
     },
     save() {
-      this.request.post("/user", this.form).then(res => {
+      this.request.post("/user/edit", this.form).then(res => {
         if (res.code === '200') {
           this.$message.success("保存成功")
 
@@ -68,14 +61,12 @@ export default {
             res.token = JSON.parse(localStorage.getItem("user")).token
             localStorage.setItem("user", JSON.stringify(res))
           })
+          this.$router.push('/');
 
         } else {
           this.$message.error("保存失败")
         }
       })
-    },
-    handleAvatarSuccess(res) {
-      this.form.avatarUrl = res
     }
   }
 }

@@ -4,9 +4,9 @@
       <div class="col-lg-3-col-xs-6">
         <div class="small-box-bg-blue">
           <div class="inner">
-            <p class="i1">目前确诊人数：</p>
-            0
-            <p class="i2">累计确诊人数：0</p>
+            <p class="i1">新增无症状感染者人数：</p>
+            10029
+            <p class="i2">无症状感染者：197213</p>
           </div>
         </div>
       </div>
@@ -14,9 +14,9 @@
       <div class="col-lg-3-col-xs-6">
         <div class="small-box-bg-green">
           <div class="inner">
-            <p class="i1">目前治愈人数：</p>
-            0
-            <p class="i2">累计治愈人数：0</p>
+            <p class="i1">新增现有确诊：</p>
+            27580
+            <p class="i2">现有确诊人数：376625</p>
           </div>
         </div>
       </div>
@@ -24,9 +24,9 @@
       <div class="col-lg-3-col-xs-6">
         <div class="small-box-bg-yellow">
           <div class="inner">
-            <p class="i1">目前隔离人数: </p>
-            0
-            <p class="i2">累计隔离人数：0</p>
+            <p class="i1">新增确诊人数: </p>
+            30593
+            <p class="i2">累计确诊人数：645695</p>
           </div>
         </div>
       </div>
@@ -34,9 +34,9 @@
       <div class="col-lg-3-col-xs-6">
         <div class="small-box-bg-red">
           <div class="inner">
-            <p class="i1">目前死亡人数：</p>
-            0
-            <p class="i2">累计死亡人数：0</p>
+            <p class="i1">新增死亡人数：</p>
+            59
+            <p class="i2">累计死亡人数：15122</p>
           </div>
         </div>
       </div>
@@ -94,8 +94,6 @@
             </el-table-column>
             <el-table-column width="60">
               <span class="editor">
-                <img src="../assets/img/edit.png" alt=""/>
-                <img src="../assets/img/delete.png" alt=""/>
               </span>
             </el-table-column>
           </el-table>
@@ -106,55 +104,50 @@
 </template>
 
 <script>
-import reactive from "vue";
-
 export default {
-  name: "dashboard",
-  setup() {
-    const name = localStorage.getItem("ms_username");
-    const role = name === "admin" ? "超级管理员" : "普通用户";
-
-    const data = reactive([]);
-    const options = {};
-    const options2 = {};
-
-    const todoList = reactive([
-      {
-        title: "今天要修复100个bug",
-        status: false,
-      },
-      {
-        title: "今天要修复100个bug",
-        status: false,
-      },
-      {
-        title: "今天要写100行代码加几个bug",
-        status: false,
-      },
-      {
-        title: "今天要修复100个bug",
-        status: false,
-      },
-      {
-        title: "今天要修复100个bug",
-        status: true,
-      },
-      {
-        title: "今天要写100行代码加几个bug",
-        status: true,
-      },
-    ]);
-
+  data() {
     return {
-      name,
-      data,
-      options,
-      options2,
-      todoList,
-      role,
-    };
-  },
-};
+      name: "dashbord",
+      todoList: [
+        {
+          title: "今天要修复100个bug",
+          status: false,
+        },
+        {
+          title: "今天要修复100个bug",
+          status: false,
+        },
+        {
+          title: "今天要修复100个bug",
+          status: false,
+        },
+        {
+          title: "今天要修复100个bug",
+          status: false,
+        },
+        {
+          title: "今天要修复100个bug",
+          status: false,
+        },
+      ]
+    }
+  }
+}
+//   name: "dashbord",
+//   setup() {
+//     const todoList = [
+//       {
+//         title: "今天要修复100个bug",
+//         status: false,
+//       },
+//     ];
+//
+//     return {
+//       name,
+//       todoList,
+//     };
+//   },
+// };
 </script>
 
 <style scoped>
@@ -181,7 +174,7 @@ export default {
 .small-box-bg-blue {
   width: 230px;
   height: 100px;
-  background-color: #579dff;
+  background-color: #ae3ac6;
   display: flex;
   align-items: center;
   color: white;
@@ -191,7 +184,7 @@ export default {
 .small-box-bg-green {
   width: 230px;
   height: 100px;
-  background-color: #00a854;
+  background-color: #e61c1d;
   display: flex;
   align-items: center;
   color: white;
@@ -201,7 +194,7 @@ export default {
 .small-box-bg-yellow {
   width: 230px;
   height: 100px;
-  background-color: #ffae35;
+  background-color: #be2121;
   display: flex;
   align-items: center;
   color: white;
@@ -211,7 +204,7 @@ export default {
 .small-box-bg-red {
   width: 230px;
   height: 100px;
-  background-color: #ff503a;
+  background-color: #4e5a65;
   display: flex;
   align-items: center;
   color: white;

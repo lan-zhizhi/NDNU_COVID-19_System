@@ -31,14 +31,11 @@ import java.util.List;
  * </p>
  *
  * @author LAN
- * @since 2022-03-31
  */
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    @Value("${files.upload.path}")
-    private String filesUploadPath;
 
     @Resource
     private IUserService userService;
@@ -52,16 +49,6 @@ public class UserController {
         }
         UserDTO dto = userService.login(userDTO);
         return Result.success(dto);
-    }
-
-    @PostMapping("/register")
-    public Result register(@RequestBody UserDTO userDTO) {
-        String username = userDTO.getUsername();
-        String password = userDTO.getPassword();
-        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
-            return Result.error(Constants.CODE_400, "参数错误");
-        }
-        return Result.success(userService.register(userDTO));
     }
 
     /**
@@ -163,37 +150,6 @@ public class UserController {
         out.close();
         writer.close();
 
-    }
-
-    /**
-     * excel 导入
-     * @param file
-     * @throws Exception
-     */
-    @PostMapping("/import")
-    public Result imp(MultipartFile file) throws Exception {
-        InputStream inputStream = file.getInputStream();
-        ExcelReader reader = ExcelUtil.getReader(inputStream);
-        // 方式1：(推荐) 通过 javabean的方式读取Excel内的对象，但是要求表头必须是英文，跟javabean的属性要对应起来
-//        List<User> list = reader.readAll(User.class);
-
-        // 方式2：忽略表头的中文，直接读取表的内容
-        List<List<Object>> list = reader.read(1);
-        List<User> users = CollUtil.newArrayList();
-        for (List<Object> row : list) {
-            User user = new User();
-            user.setUsername(row.get(0).toString());
-            user.setPassword(row.get(1).toString());
-            user.setUsername(row.get(2).toString());
-
-            user.setPhone(row.get(4).toString());
-            user.setDepartment(row.get(5).toString());
-            user.setAvatarUrl(row.get(6).toString());
-            users.add(user);
-        }
-
-        userService.saveBatch(users);
-        return Result.success(true);
     }
 
 }
